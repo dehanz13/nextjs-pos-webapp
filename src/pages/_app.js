@@ -6,6 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserProvider>
       <div className="p-5 w-screen h-screen">
+        <h1>HELLO</h1>
         <Component {...pageProps} />
       </div>
     </UserProvider>
