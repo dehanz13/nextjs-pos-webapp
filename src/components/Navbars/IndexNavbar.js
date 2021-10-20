@@ -10,10 +10,10 @@ export default function IndexNavbar() {
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link href="/">
               <a
-                className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                className="text-blueGray-700 text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                 href="#pablo"
               >
-                <i className="far fa-building"></i> Smart POS
+                <i className="far fa-building text-2xl"></i> Smart POS
               </a>
             </Link>
             <button
@@ -34,7 +34,7 @@ export default function IndexNavbar() {
             <ul className="flex flex-col lg:flex-row list-none ml-auto">
               <li className="flex items-center">
                 <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"
                   href=""
                 >
                   Products
@@ -42,7 +42,7 @@ export default function IndexNavbar() {
               </li>
               <li className="flex items-center">
                 <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"
                   href=""
                 >
                   Business Types
@@ -50,7 +50,7 @@ export default function IndexNavbar() {
               </li>
               <li className="flex items-center">
                 <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"
                   href=""
                 >
                   Why Smart?
@@ -58,7 +58,7 @@ export default function IndexNavbar() {
               </li>
               <li className="flex items-center">
                 <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"
                   href=""
                 >
                   Resources
@@ -74,7 +74,15 @@ export default function IndexNavbar() {
                   className="bg-blueGray-700 text-white active:bg-blueGray-600 text-lg font-semibold uppercase px-5 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  <i className="fas fa-sign-in-alt text-5xl"></i> Sign In
+                  <Link href="http://localhost:3000/api/auth/login">
+                    <a
+                    // href="http://localhost:3000/api/auth/login"
+                    // rel="noreferrer noopener"
+                    // target="_blank"
+                    >
+                      <i className="fas fa-sign-in-alt text-xl"></i> Sign In
+                    </a>
+                  </Link>
                 </button>
               </li>
             </ul>
