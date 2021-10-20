@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -46,4 +45,3 @@ To learn more about Next.js, take a look at the following resources:
   - - Owner can login/register
 - Dashboard ('/dashboard')
   - - Owner can CRUD menu items
->>>>>>> 559a3017ea385737a93e018417c6552d280ee554
