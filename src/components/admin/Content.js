@@ -7,24 +7,6 @@ export const Content = (userInfo) => {
   const user = userInfo;
   return (
     <main className="col-span-5">
-      {/* <header className="flex items-center px-3 h-16 shadow">
-        <h1 className="text-lg text-gray-800">Dashboard</h1>
-        <button className="h-12 w-12 flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
-      </header> */}
       <section className="mt-4 p-3">
         <h1 className="text-gray-700">Overview</h1>
         <ul className="mt-3 grid grid-cols-3 gap-6">
@@ -228,7 +210,6 @@ export const Content = (userInfo) => {
         </ul>
       </section>
       <section className="mt-4 p-3">
-        <h1 className="text-gray-700">Overview</h1>
         <ul className="mt-3 grid grid-cols-3 gap-6">
           <li className="col-span-2 py-4 px-4 rounded border bg-gray-100 border-gray-200">
             <div className="grid grid-rows-3 gap-4 ">

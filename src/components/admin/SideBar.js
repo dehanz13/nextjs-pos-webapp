@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-export function SideBar(userInfo) {
-  const user = userInfo;
+export function SideBar(props) {
+  // const [contentDisplay, setContentDisplay] = useState("dashboard");
   return (
     <aside className="flex flex-col px-3 bg-gray-100 border-r border-gray-200">
       <section className="flex items-center py-3 mt-3 mb-10">
@@ -20,41 +20,51 @@ export function SideBar(userInfo) {
       <div className="grid grid-cols-1 gap-6 divide-y-1 divide-gray-400">
         <ul className="space-y-5">
           <li className="flex items-center mb-3">
-            <span className="h-8 w-8 flex items-center justify-center mr-3">
-              <svg
-                width="18"
-                height="18"
-                fill="none"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                xmlns="http://www.w3.org/2000/svg"
-                class="stroke-current text-indigo-800"
-              >
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
-            </span>
-            <h4 className="font-medium text-gray-800 ml-1">Dashboard</h4>
+            <button
+              className="flex items-center w-full"
+              onClick={props.dashboard}
+            >
+              <span className="h-8 w-8 flex items-center justify-center mr-3">
+                <svg
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="stroke-current text-indigo-800"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </span>
+              <h4 className="font-medium text-gray-800 ml-1">Dashboard</h4>
+            </button>
           </li>
           <li className="flex items-center mb-3">
-            <span className="h-8 w-8 flex items-center justify-center mr-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke-width="2"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="stroke-current text-indigo-800"
-              >
-                <path d="M12 20v-6M6 20V10M18 20V4" />
-              </svg>
-            </span>
-            <h4 className="font-medium text-gray-800 ml-1">Analytics</h4>
+            <button
+              className="flex items-center w-full"
+              onClick={props.products}
+            >
+              <span className="h-8 w-8 flex items-center justify-center mr-3">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="stroke-current text-indigo-800"
+                >
+                  <path d="M12 20v-6M6 20V10M18 20V4" />
+                </svg>
+              </span>
+              <h4 className="font-medium text-gray-800 ml-1">Analytics</h4>
+            </button>
           </li>
           <li className="flex items-center mb-3">
             <span className="h-8 w-8 flex items-center justify-center mr-3">
