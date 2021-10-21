@@ -9,9 +9,12 @@ import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import store from "../redux/store";
+import { Provider } from "react-redux";
 
 const MyApp = ({ Component, pageProps }) => {
   const Layout = Component.layout || (({ children }) => <>{children}</>);
+
   return (
     <React.Fragment>
       <Head>
@@ -22,11 +25,11 @@ const MyApp = ({ Component, pageProps }) => {
         <title>Smart POS</title>
         <script src=""></script>
       </Head>
-      <Layout>
+      <Provider store={store}>
         <UserProvider>
           <Component {...pageProps} />
         </UserProvider>
-      </Layout>
+      </Provider>
     </React.Fragment>
   );
 };

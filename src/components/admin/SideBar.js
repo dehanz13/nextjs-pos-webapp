@@ -4,7 +4,7 @@ export function SideBar(userInfo) {
   const user = userInfo;
   return (
     <aside className="flex flex-col px-3 bg-gray-100 border-r border-gray-200">
-      <section className="flex items-center py-3 mb-10">
+      <section className="flex items-center py-3 mt-3 mb-10">
         <span className="inline-block w-10 h-10 rounded-full overflow-hidden">
           <img
             className="w-full object-fit rounded-full"
