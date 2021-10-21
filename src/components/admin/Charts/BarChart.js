@@ -1,10 +1,10 @@
 import React from "react";
-import { Pie, defaults, Doughnut } from "react-chartjs-2";
+import { Bar, defaults, Doughnut } from "react-chartjs-2";
 
-const PieChart = () => {
+const BarChart = () => {
   return (
     <div>
-      <Pie
+      <Bar
         data={{
           labels: ["New", "Returning"],
           datasets: [
@@ -32,4 +32,4 @@ const PieChart = () => {
   );
 };
 
-export default PieChart;
+export default BarChart;

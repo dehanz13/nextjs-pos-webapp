@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import Link from "next/link";
+import AppContext from "../AppContext";
 
-export function SideBar(props) {
+export function SideBar() {
   // const [contentDisplay, setContentDisplay] = useState("dashboard");
+  // const value = useContext(AppContext);
+  // let { componentSelected } = value.state;
+  // let { component } = value.state.components;
   return (
     <aside className="flex flex-col px-3 bg-gray-100 border-r border-gray-200">
       <section className="flex items-center py-3 mt-3 mb-10">
@@ -13,58 +18,63 @@ export function SideBar(props) {
           />
         </span>
         <div className="ml-3 leading-none">
-          <h2 className="text-lg text-gray-800">Danniel Hansel</h2>
-          <h3 className="text-gray-600">Software Developer</h3>
+          <h2 className="text-lg text-gray-800">John Doe</h2>
+          <h3 className="text-gray-600">Admin</h3>
         </div>
       </section>
       <div className="grid grid-cols-1 gap-6 divide-y-1 divide-gray-400">
         <ul className="space-y-5">
           <li className="flex items-center mb-3">
-            <button
-              className="flex items-center w-full"
-              onClick={props.dashboard}
+            <Link
+              // className="flex items-center w-full"
+              href="/dashboard"
+              // onClick={() => value.setComponentSelected("dashboard")}
             >
-              <span className="h-8 w-8 flex items-center justify-center mr-3">
-                <svg
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="stroke-current text-indigo-800"
-                >
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </span>
-              <h4 className="font-medium text-gray-800 ml-1">Dashboard</h4>
-            </button>
+              <a className="flex items-center w-full">
+                <span className="h-8 w-8 flex items-center justify-center mr-3">
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stroke-current text-indigo-800"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </span>
+                <h4 className="font-medium text-gray-800 ml-1">Dashboard</h4>
+              </a>
+            </Link>
           </li>
           <li className="flex items-center mb-3">
-            <button
-              className="flex items-center w-full"
-              onClick={props.products}
-            >
-              <span className="h-8 w-8 flex items-center justify-center mr-3">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke-width="2"
-                  xmlns="http://www.w3.org/2000/svg"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="stroke-current text-indigo-800"
-                >
-                  <path d="M12 20v-6M6 20V10M18 20V4" />
-                </svg>
-              </span>
-              <h4 className="font-medium text-gray-800 ml-1">Analytics</h4>
-            </button>
+            <Link href="/admin/analytics">
+              <a
+                className="flex items-center w-full"
+                // onClick={() => value.setComponentSelected("Analytics")}
+              >
+                <span className="h-8 w-8 flex items-center justify-center mr-3">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="stroke-current text-indigo-800"
+                  >
+                    <path d="M12 20v-6M6 20V10M18 20V4" />
+                  </svg>
+                </span>
+                <h4 className="font-medium text-gray-800 ml-1">Analytics</h4>
+              </a>
+            </Link>
           </li>
           <li className="flex items-center mb-3">
             <span className="h-8 w-8 flex items-center justify-center mr-3">
@@ -230,22 +240,29 @@ export function SideBar(props) {
       </div>
       <ul className="mb-3 space-y-3 mt-auto">
         <li className="flex items-center mb-3">
-          <span className="h-8 w-8 flex items-center justify-center mr-3">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current text-indigo-800"
+          <Link href="/">
+            <a
+              className="flex items-center"
+              href="http://localhost:3000/api/auth/logout"
             >
-              <path d="M10 3H6a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h4M16 17l5-5-5-5M19.8 12H9" />
-            </svg>
-          </span>
-          <h4 className="font-medium text-gray-800 ml-1">Logout</h4>
+              <span className="h-8 w-8 flex items-center justify-center mr-3">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="stroke-current text-indigo-800"
+                >
+                  <path d="M10 3H6a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h4M16 17l5-5-5-5M19.8 12H9" />
+                </svg>
+              </span>
+              <h4 className="font-medium text-gray-800 ml-1">Logout</h4>
+            </a>
+          </Link>
         </li>
       </ul>
     </aside>

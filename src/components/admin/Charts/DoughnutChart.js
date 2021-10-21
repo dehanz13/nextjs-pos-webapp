@@ -4,7 +4,7 @@ import { Pie, defaults, Doughnut } from "react-chartjs-2";
 const PieChart = () => {
   return (
     <div>
-      <Pie
+      <Doughnut
         data={{
           labels: ["New", "Returning"],
           datasets: [

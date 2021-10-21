@@ -3,10 +3,9 @@ import React from "react";
 import LineChart from "./Charts/LineChart";
 import PieChart from "./Charts/PieChart";
 
-export const Content = (userInfo) => {
-  const user = userInfo;
+export const Overview = () => {
   return (
-    <main className="col-span-5">
+    <main>
       <section className="mt-4 p-3">
         <h1 className="text-gray-700">Overview</h1>
         <ul className="mt-3 grid grid-cols-3 gap-6">
@@ -386,23 +385,6 @@ export const Content = (userInfo) => {
                     <h3 className="text-gray-600 text-lg font-extrabold">3</h3>
                   </div>
                 </div>
-                {/* <h1 className="font-extrabold text-4xl mr-2">34</h1>
-                <span className="py-1 px-2 flex items-center justify-center rounded-full bg-emerald-100 font-extrabold">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="stroke-current text-emerald-400"
-                  >
-                    <path d="M18 15l-6-6-6 6" />
-                  </svg>
-                  <p className="text-xs text-emerald-400 ml-2">1.8%</p>
-                </span> */}
               </div>
               <div className="grid grid-rows-2 px-3 place-items-end">
                 <span className="block mb-3 uppercase tracking-wider text-sm font-bold text-gray-600">

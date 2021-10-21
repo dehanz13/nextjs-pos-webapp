@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "next/router";
+import AdminLayout from "../Layouts/AdminLayout";
 
 const Products = (props) => {
   return (
