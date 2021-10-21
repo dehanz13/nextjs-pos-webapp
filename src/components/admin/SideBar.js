@@ -13,7 +13,7 @@ export function SideBar(userInfo) {
           />
         </span>
         <div className="ml-3 leading-none">
-          <h2 className="text-lg text-red-400">Danniel Hansel</h2>
+          <h2 className="text-lg text-gray-800">Danniel Hansel</h2>
           <h3 className="text-gray-600">Software Developer</h3>
         </div>
       </section>
@@ -36,7 +36,7 @@ export function SideBar(userInfo) {
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
             </span>
-            <h4 className="font-medium text-gray-800 ml-1">Overview</h4>
+            <h4 className="font-medium text-gray-800 ml-1">Dashboard</h4>
           </li>
           <li className="flex items-center mb-3">
             <span className="h-8 w-8 flex items-center justify-center mr-3">

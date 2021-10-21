@@ -15,7 +15,7 @@ export default function DashboardPage() {
     router.push("/api/auth/login");
   } else {
     return (
-      <div className="antialiased h-screen grid grid-cols-6 gap-4">
+      <div className="antialiased h-screen grid grid-cols-6">
         <SideBar userInfo={user} />
         <AdminNavbar user={user} />
         {/* <MainContent /> */}
