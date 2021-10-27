@@ -1,40 +1,93 @@
-import React from "react";
-import { withRouter } from "next/router";
-import AdminLayout from "../Layouts/AdminLayout";
-import { menuData } from "./menuObject";
-import ListUI from "../ListUI";
-import TabsUI from "../TabsUI";
+import React, { useState } from 'react';
+import { withRouter } from 'next/router';
+import AdminLayout from '../Layouts/AdminLayout';
+import { menuData } from './menuObject';
+import ListUI from '../ListUI';
+import TabsUI from '../TabsUI';
+import { useFirestore } from '../../hooks/useFirestore';
+import { addMenuItem, deleteMenuItem } from '../../Utils/FirebaseUtils';
 
 const Products = () => {
+  const { docs } = useFirestore('menuItems');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState(0);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const menuDetails = {
+      Entree: name,
+      Description: description,
+      Price: price,
+    };
+
+    addMenuItem(menuDetails);
+  };
+
   return (
     <div className="p-4">
       <h1 className="text-xl text-gray-700 mb-4">Menu</h1>
+      <div className="flex">
+        <form className="w-full max-w-lg">
+          <p>Name</p>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border rounded border-black"
+            type="text"
+            required
+          />
+          <p>Desc</p>
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="border rounded border-black"
+            type="text"
+            required
+          />
+          <p>Price</p>
+          <input
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="border rounded border-black"
+            type="number"
+            required
+          />
+
+          <button type="submit" onClick={handleSubmit}>
+            SUBMIT
+          </button>
+        </form>
+      </div>
       {/* <TabsUI /> */}
       <section className="flex items-center w-full">
-        <table class="shadow-lg bg-white flex-grow rounded-lg">
+        <table className="shadow-lg bg-white flex-grow rounded-lg">
           <tr>
-            <th class="bg-blue-100 border text-center px-8 py-4">#</th>
-            <th class="bg-blue-100 border text-center px-8 py-4">Menu Item</th>
-            <th class="bg-blue-100 border text-center px-8 py-4">
+            <th className="bg-blue-100 border text-center px-8 py-4">#</th>
+            <th className="bg-blue-100 border text-center px-8 py-4">
+              Menu Item
+            </th>
+            <th className="bg-blue-100 border text-center px-8 py-4">
               Description
             </th>
-            <th class="bg-blue-100 border text-center px-8 py-4">Price</th>
-            <th class="bg-blue-100 border text-center px-8 py-4"></th>
+            <th className="bg-blue-100 border text-center px-8 py-4">Price</th>
+            <th className="bg-blue-100 border text-center px-8 py-4"></th>
           </tr>
-          {menuData.map((data, key) => {
+          {docs.map((data, idx) => {
             return (
-              <tr key={key}>
-                <td class="border px-8 py-4 text-center capitalize">
-                  {data.id}
+              <tr key={idx}>
+                <td className="border px-8 py-4 text-center capitalize">
+                  {idx + 1}
                 </td>
-                <td class="border px-8 py-4 text-center capitalize">
-                  {data.name}
+                <td className="border px-8 py-4 text-center capitalize">
+                  {data.Entree}
                 </td>
-                <td class="border px-8 py-4 text-center capitalize">
-                  {data.description}
+                <td className="border px-8 py-4 text-center capitalize">
+                  {data.Description}
                 </td>
-                <td class="border px-8 py-4 text-center">$ {data.price}</td>
-                <td class="border px-2 py-4 text-center">
+                <td className="border px-8 py-4 text-center">$ {data.Price}</td>
+                <td className="border px-2 py-4 text-center">
                   {/* <editButtons /> */}
                   <ul className="grid grid-cols-4 gap-2 place-items-center mx-4">
                     <li className="col-span-2">
@@ -58,7 +111,7 @@ const Products = () => {
                       </button>
                     </li>
                     <li className="col-span-2">
-                      <button>
+                      <button onClick={() => deleteMenuItem(data.id)}>
                         <span className="h-8 w-8">
                           <svg
                             width="24"
