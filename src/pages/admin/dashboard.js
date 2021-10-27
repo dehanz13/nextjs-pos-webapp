@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 
-import { Overview } from "../components/admin/Overview";
-import Layout from "../components/Layouts/AdminLayout";
+import { Overview } from "../../components/admin/Overview";
+import Layout from "../../components/Layouts/AdminLayout";
 
 export default function DashboardPage({ Component, pageProps }) {
   const { user, error, isLoading } = useUser();
