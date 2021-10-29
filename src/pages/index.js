@@ -101,12 +101,12 @@ const Home = () => {
                   <p className="text-md font-bold mt-8 text-white">
                     <a href="/" className="">
                       Learn about our POS software{" "}
-                      <i class="fas fa-chevron-circle-right"></i>
+                      <i className="fas fa-chevron-circle-right" />
                     </a>
                   </p>
                   <p className="text-md font-bold mt-2 text-white">
                     <a href="/" className="">
-                      Get it now <i class="fas fa-chevron-circle-right"></i>
+                      Get it now <i className="fas fa-chevron-circle-right"></i>
                     </a>
                   </p>
                 </blockquote>
@@ -143,12 +143,12 @@ const Home = () => {
                   <p className="text-md font-bold mt-8 text-white">
                     <a href="/" className="">
                       Learn about our restaurant POS system{" "}
-                      <i class="fas fa-chevron-circle-right"></i>
+                      <i className="fas fa-chevron-circle-right" />
                     </a>
                   </p>
                   <p className="text-md font-bold mt-2 text-white">
                     <a href="/" className="">
-                      Get it now <i class="fas fa-chevron-circle-right"></i>
+                      Get it now <i className="fas fa-chevron-circle-right" />
                     </a>
                   </p>
                 </blockquote>
@@ -185,12 +185,12 @@ const Home = () => {
                   <p className="text-md font-bold mt-8 text-white">
                     <a href="/" className="">
                       Learn about our appointment scheduling software{" "}
-                      <i class="fas fa-chevron-circle-right"></i>
+                      <i className="fas fa-chevron-circle-right" />
                     </a>
                   </p>
                   <p className="text-md font-bold mt-2 text-white">
                     <a href="/" className="">
-                      Get it now <i class="fas fa-chevron-circle-right"></i>
+                      Get it now <i className="fas fa-chevron-circle-right" />
                     </a>
                   </p>
                 </blockquote>
@@ -317,7 +317,7 @@ const Home = () => {
               <p className="text-md font-bold mt-8 text-white">
                 <a href="/" className="">
                   Learn about our POS invoices{" "}
-                  <i class="fas fa-chevron-circle-right"></i>
+                  <i className="fas fa-chevron-circle-right"></i>
                 </a>
               </p>
             </div>
@@ -335,7 +335,7 @@ const Home = () => {
               <p className="text-md font-bold mt-8 text-white">
                 <a href="/" className="">
                   Learn about our POS Virtual Terminal{" "}
-                  <i class="fas fa-chevron-circle-right"></i>
+                  <i className="fas fa-chevron-circle-right"></i>
                 </a>
               </p>
             </div>
@@ -386,7 +386,7 @@ const Home = () => {
               <p className="text-md font-bold mt-8 text-blueGray-700">
                 <a href="/" className="">
                   For help getting started, connect with us{" "}
-                  <i class="fas fa-chevron-circle-right"></i>
+                  <i className="fas fa-chevron-circle-right"></i>
                 </a>
               </p>
               <div className="text-center mt-16"></div>

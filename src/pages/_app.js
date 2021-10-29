@@ -20,10 +20,9 @@ const MyApp = ({ Component, pageProps }) => {
       <Head>
         <meta
           name="viewport"
-          content="width=device-width, initial-sclae=1, shrink-to-fit=no"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title>Smart POS</title>
-        <script src=""></script>
       </Head>
       <Provider store={store}>
         <UserProvider>

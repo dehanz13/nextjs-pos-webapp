@@ -1,22 +1,25 @@
-import { firestoreApp } from '../config/firebase';
+import { firestoreDb } from "../config/firebase";
+import { doc, setDoc, deleteDoc, collection } from "firebase/firestore";
 
-const db = firestoreApp.collection('menuItems');
-
-export const addMenuItem = async (menuDetails) => {
+export const setMenuItem = async (menuDetails, id) => {
   try {
-    await db.doc().set(menuDetails);
-    console.log('Added');
+    if (id === "newID") {
+      const newMenu = doc(collection(firestoreDb, "menuItems"));
+      await setDoc(newMenu, menuDetails);
+      console.log("Added");
+    } else {
+      await setDoc(doc(firestoreDb, "menuItems", id), menuDetails);
+      console.log("Updated");
+    }
   } catch (err) {
-    console.Long(err);
+    console.log(err);
   }
 };
 
-export const updateMenuItem = () => {};
-
 export const deleteMenuItem = async (id) => {
   try {
-    await db.doc(id).delete();
-    console.log('Delete');
+    await deleteDoc(doc(firestoreDb, "menuItems", id));
+    console.log("Delete");
   } catch (err) {
     console.log(err);
   }

@@ -1,22 +1,17 @@
-import { useEffect, useState } from 'react';
-import { firestoreApp } from '../config/firebase';
+import { useEffect, useState } from "react";
+import { onSnapshot, collection } from "firebase/firestore";
+import { firestoreDb } from "../config/firebase";
 
-export const useFirestore = (collection) => {
+export const useFirestore = (col) => {
   const [docs, setDocs] = useState([]);
 
-  useEffect(() => {
-    const subscribe = firestoreApp.collection(collection).onSnapshot((snap) => {
-      let documents = [];
-
-      snap.forEach((doc) => {
-        documents.push({ ...doc.data(), id: doc.id });
-      });
-
-      setDocs(documents);
-    });
-
-    return () => subscribe();
-  }, [collection]);
+  useEffect(
+    () =>
+      onSnapshot(collection(firestoreDb, col), (snapshot) =>
+        setDocs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      ),
+    [col]
+  );
 
   return { docs };
 };

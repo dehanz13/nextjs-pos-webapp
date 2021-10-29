@@ -15,9 +15,9 @@ const Navbar = () => {
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="stroke-current text-gray-800"
           >
             <path d="M6 9l6 6 6-6" />
@@ -35,17 +35,17 @@ const Navbar = () => {
               height="36"
               viewBox="0 0 24 24"
               fill="none"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               xmlns="http://www.w3.org/2000/svg"
               className="stroke-current text-gray-800"
             >
               <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
             </svg>
           </span>
-          <span class="absolute inset-0 object-right-top -mr-6">
-            <div class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
+          <span className="absolute inset-0 object-right-top -mr-6">
+            <div className="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
               6
             </div>
           </span>
@@ -56,9 +56,9 @@ const Navbar = () => {
             height="36"
             viewBox="0 0 24 24"
             fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="stroke-current text-gray-800"
             xmlns="http://www.w3.org/2000/svg"
           >
