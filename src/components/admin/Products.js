@@ -10,6 +10,8 @@ const Products = () => {
   const { docs } = useFirestore("menuItems");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
   const [updateData, setUpdateData] = useState({});
 
@@ -17,9 +19,11 @@ const Products = () => {
     e.preventDefault();
 
     const menuDetails = {
-      Entree: name,
+      Name: name,
       Description: description,
+      Category: category,
       Price: price,
+      Quantity: quantity,
       createdAt:
         Object.keys(updateData).length === 0
           ? new Date().getTime()
@@ -37,15 +41,19 @@ const Products = () => {
 
   const handleUpdate = (data) => {
     setUpdateData(data);
-    setName(data.Entree);
+    setName(data.Name);
     setDescription(data.Description);
+    setCategory(data.Category);
     setPrice(data.Price);
+    setQuantity(data.Quantity);
   };
 
   const clearField = () => {
     setName("");
     setDescription("");
+    setCategory("");
     setPrice(0);
+    setQuantity(0);
   };
 
   return (
@@ -61,6 +69,14 @@ const Products = () => {
             type="text"
             required
           />
+          <p>Category</p>
+          <input
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="border rounded border-black"
+            type="text"
+            required
+          />
           <p>Desc</p>
           <input
             value={description}
@@ -69,6 +85,7 @@ const Products = () => {
             type="text"
             required
           />
+
           <p>Price</p>
           <input
             value={price}
@@ -77,7 +94,14 @@ const Products = () => {
             type="number"
             required
           />
-
+          <p>Quantity</p>
+          <input
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            className="border rounded border-black"
+            type="text"
+            required
+          />
           <button type="submit" onClick={handleSubmit}>
             {Object.keys(updateData).length === 0 ? "Submit" : "Update"}
           </button>
@@ -94,10 +118,19 @@ const Products = () => {
                 Menu Item
               </th>
               <th className="bg-blue-100 border text-center px-8 py-4">
+                Category
+              </th>
+              <th className="bg-blue-100 border text-center px-8 py-4">
                 Description
               </th>
               <th className="bg-blue-100 border text-center px-8 py-4">
+                Image
+              </th>
+              <th className="bg-blue-100 border text-center px-8 py-4">
                 Price
+              </th>
+              <th className="bg-blue-100 border text-center px-8 py-4">
+                Quantity
               </th>
               <th className="bg-blue-100 border text-center px-8 py-4"></th>
             </tr>
@@ -112,13 +145,22 @@ const Products = () => {
                       {idx + 1}
                     </td>
                     <td className="border px-8 py-4 text-center capitalize">
-                      {data.Entree}
+                      {data.Name}
+                    </td>
+                    <td className="border px-8 py-4 text-center capitalize">
+                      {data.Category}
+                    </td>
+                    <td className="border px-8 py-4 text-center capitalize">
+                      {data.Description}
                     </td>
                     <td className="border px-8 py-4 text-center capitalize">
                       {data.Description}
                     </td>
                     <td className="border px-8 py-4 text-center">
                       $ {data.Price}
+                    </td>
+                    <td className="border px-8 py-4 text-center capitalize">
+                      {data.Quantity}
                     </td>
                     <td className="border px-2 py-4 text-center">
                       {/* <editButtons /> */}
