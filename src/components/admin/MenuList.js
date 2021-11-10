@@ -1,7 +1,7 @@
 import React from "react";
 import { setMenuItem, deleteMenuItem } from "../../Utils/FirebaseUtils";
 
-const MenuList = ({ handleUpdate, menuItems }) => {
+const MenuList = ({ handleUpdate, menuItems, handleDeleteItem }) => {
   return (
     <section className="flex items-center w-full">
       <table className="shadow-lg bg-white flex-grow rounded-lg">
@@ -50,6 +50,7 @@ const MenuList = ({ handleUpdate, menuItems }) => {
                         src={data.Image || "http://via.placeholder.com/75"}
                         alt={data.Image}
                       />
+                      <p>{data.ImageTitle}</p>
                     </div>
                   </td>
                   <td className="border px-8 py-4 text-center">
@@ -82,7 +83,8 @@ const MenuList = ({ handleUpdate, menuItems }) => {
                         </button>
                       </li>
                       <li className="col-span-2">
-                        <button onClick={() => deleteMenuItem(data.id)}>
+                        {/* <button onClick={() => deleteMenuItem(data.id)}> */}
+                        <button onClick={() => handleDeleteItem(data)}>
                           <span className="h-8 w-8">
                             <svg
                               width="24"

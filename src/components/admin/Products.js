@@ -5,13 +5,14 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  deleteObject,
 } from "firebase/storage";
 import Modal from "react-modal";
 
 import ListUI from "../ListUI";
 import TabsUI from "../TabsUI";
 import { useFirestore } from "../../hooks/useFirestore";
-import { setMenuItem } from "../../Utils/FirebaseUtils";
+import { setMenuItem, deleteMenuItem } from "../../Utils/FirebaseUtils";
 import UpdateMenuForm from "./Forms/UpdateMenuForm";
 import MenuList from "./MenuList";
 
@@ -35,6 +36,8 @@ const Products = () => {
     setImage,
     imageUrl,
     setImageUrl,
+    imageTitle,
+    setImageTitle,
   } = useContext(ProductContext);
   const { docs } = useFirestore("menuItems");
   const [modalOpen, setModalOpen] = useState(false);
@@ -52,6 +55,7 @@ const Products = () => {
         Price: price,
         Quantity: quantity,
         Image: imgUrl,
+        ImageTitle: image.name,
         createdAt:
           Object.keys(updateData).length === 0
             ? new Date().getTime()
@@ -79,6 +83,7 @@ const Products = () => {
     setPrice(data.Price);
     setQuantity(data.Quantity);
     setImage(data.Image);
+    setImageTitle(data.ImageTitle);
     setModalOpen(true);
     setProgress(0);
   };
@@ -119,6 +124,21 @@ const Products = () => {
     });
   };
 
+  const handleDeleteItem = (data) => {
+    const storage = getStorage();
+
+    const desertRef = ref(storage, `images/${data.ImageTitle}`);
+
+    deleteObject(desertRef)
+      .then(() => {
+        console.log(`Successfully deleted image ${data.ImageTitle}`);
+        deleteMenuItem(data.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleCloseModal = () => {
     clearField();
     setModalOpen(false);
@@ -133,6 +153,7 @@ const Products = () => {
     // setImage(null);
     setImage("");
     // setImageUrl("");
+    setImageTitle("");
     setModalOpen(false);
     setProgress(0);
   };
@@ -148,7 +169,11 @@ const Products = () => {
           ADD
         </button>
       </div>
-      <MenuList menuItems={docs} handleUpdate={handleUpdate} />
+      <MenuList
+        menuItems={docs}
+        handleUpdate={handleUpdate}
+        handleDeleteItem={handleDeleteItem}
+      />
 
       <Modal isOpen={modalOpen} onRequestClose={handleCloseModal}>
         <UpdateMenuForm

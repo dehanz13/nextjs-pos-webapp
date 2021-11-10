@@ -9,7 +9,6 @@ const UpdateMenuForm = ({
   onHandleFileChange,
   progress,
 }) => {
-  // const [input, setInput] = useState(props.edit ? props.edit.value : "");
   const {
     name,
     setName,
@@ -27,6 +26,8 @@ const UpdateMenuForm = ({
     setImage,
     imageUrl,
     setImageUrl,
+    imageTitle,
+    setImageTitle,
   } = useContext(ProductContext);
 
   const [preview, setPreview] = useState();

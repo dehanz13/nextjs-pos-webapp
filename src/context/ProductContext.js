@@ -10,6 +10,7 @@ export const ProductProvider = ({ children }) => {
   const [updateData, setUpdateData] = useState({});
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [imageTitle, setImageTitle] = useState("");
 
   return (
     <ProductContext.Provider
@@ -30,6 +31,8 @@ export const ProductProvider = ({ children }) => {
         setImage,
         imageUrl,
         setImageUrl,
+        imageTitle,
+        setImageTitle,
       }}
     >
       {children}
