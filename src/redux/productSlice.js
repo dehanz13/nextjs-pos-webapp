@@ -2,18 +2,23 @@ import React from "react";
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-  component: "dashboard",
+  name: "",
+  category: "",
+  description: "",
+  price: "",
+  quantity: "",
 };
 
-const componentSlice = createSlice({
-  name: "component",
+const productSlice = createSlice({
+  name: "product",
   initialState,
   reducers: {
-    setComponent(state, action) {
-      state = state;
-    },
-    resetComponent(state, action) {
-      state = state;
+    populateData(state, action) {
+      state.name = action.payload.name;
+      state.category = action.payload.category;
+      state.description = action.payload.description;
+      state.price = action.payload.price;
+      state.quantity = action.payload.quantity;
     },
     // setUser: (
     //   state: Draft<typeof initialState>,
@@ -29,10 +34,7 @@ const componentSlice = createSlice({
   },
 });
 
-// Selectors
-export const getComponent = (state) => state.component;
-
 // Reducers and actions
-export const { setComponent, resetComponent } = componentSlice.actions;
+export const { populateData } = productSlice.actions;
 
-export default componentSlice.reducer;
+export default productSlice.reducer;

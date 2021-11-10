@@ -1,42 +1,76 @@
-import React, { useState } from "react";
-import { withRouter } from "next/router";
-import AdminLayout from "../Layouts/AdminLayout";
+import React, { useState, useContext, useEffect } from "react";
+import { ProductContext } from "../../context/ProductContext";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import Modal from "react-modal";
+
 import ListUI from "../ListUI";
 import TabsUI from "../TabsUI";
 import { useFirestore } from "../../hooks/useFirestore";
-import { setMenuItem, deleteMenuItem } from "../../Utils/FirebaseUtils";
+// import { useStorage } from "../../hooks/useStorage";
+import { setMenuItem } from "../../Utils/FirebaseUtils";
+import UpdateMenuForm from "./Forms/UpdateMenuForm";
+import MenuList from "./MenuList";
+
+Modal.setAppElement("#__next");
 
 const Products = () => {
+  const {
+    name,
+    setName,
+    description,
+    setDescription,
+    category,
+    setCategory,
+    price,
+    setPrice,
+    quantity,
+    setQuantity,
+    updateData,
+    setUpdateData,
+    image,
+    setImage,
+    imageUrl,
+    setImageUrl,
+  } = useContext(ProductContext);
   const { docs } = useFirestore("menuItems");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [updateData, setUpdateData] = useState({});
+  // const { url } = useStorage(image);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const imgUrl = await handleFileUpload(image);
+    setImageUrl(imgUrl);
+    if (imgUrl) {
+      const menuDetails = {
+        Name: name,
+        Description: description,
+        Category: category,
+        Price: price,
+        Quantity: quantity,
+        Image: imgUrl,
+        createdAt:
+          Object.keys(updateData).length === 0
+            ? new Date().getTime()
+            : updateData.createdAt,
+      };
+      try {
+        setMenuItem(
+          menuDetails,
+          Object.keys(updateData).length === 0 ? "newID" : updateData.id
+        );
 
-    const menuDetails = {
-      Name: name,
-      Description: description,
-      Category: category,
-      Price: price,
-      Quantity: quantity,
-      createdAt:
-        Object.keys(updateData).length === 0
-          ? new Date().getTime()
-          : updateData.createdAt,
-    };
-
-    setMenuItem(
-      menuDetails,
-      Object.keys(updateData).length === 0 ? "newID" : updateData.id
-    );
-
-    clearField();
-    setUpdateData({});
+        clearField();
+        setUpdateData({});
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleUpdate = (data) => {
@@ -46,6 +80,45 @@ const Products = () => {
     setCategory(data.Category);
     setPrice(data.Price);
     setQuantity(data.Quantity);
+    setImage(data.Image);
+    setModalOpen(true);
+    setProgress(0);
+  };
+
+  const handleFileUpload = async (image) => {
+    const storage = getStorage();
+    const storageRef = ref(storage, `images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(progress);
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused...");
+              break;
+            case "running":
+              console.log("Upload is running...");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          reject(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setImageUrl(downloadURL);
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
   };
 
   const clearField = () => {
@@ -54,167 +127,36 @@ const Products = () => {
     setCategory("");
     setPrice(0);
     setQuantity(0);
+    // setImage(null);
+    setImage("");
+    // setImageUrl("");
+    setModalOpen(false);
+    setProgress(0);
   };
 
   return (
     <div className="p-4">
-      <h1 className="text-xl text-gray-700 mb-4">Menu</h1>
-      <div className="flex">
-        <form className="w-full max-w-lg">
-          <p>Name</p>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="border rounded border-black"
-            type="text"
-            required
-          />
-          <p>Category</p>
-          <input
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="border rounded border-black"
-            type="text"
-            required
-          />
-          <p>Desc</p>
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="border rounded border-black"
-            type="text"
-            required
-          />
-
-          <p>Price</p>
-          <input
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="border rounded border-black"
-            type="number"
-            required
-          />
-          <p>Quantity</p>
-          <input
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            className="border rounded border-black"
-            type="text"
-            required
-          />
-          <button type="submit" onClick={handleSubmit}>
-            {Object.keys(updateData).length === 0 ? "Submit" : "Update"}
-          </button>
-        </form>
+      <div className="flex justify-between mb-5">
+        <h1 className="text-xl text-gray-700 mb-4">Menu</h1>
+        <button
+          onClick={() => setModalOpen(true)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+        >
+          ADD
+        </button>
       </div>
-      {/* <TabsUI /> */}
+      <MenuList menuItems={docs} handleUpdate={handleUpdate} />
 
-      <section className="flex items-center w-full">
-        <table className="shadow-lg bg-white flex-grow rounded-lg">
-          <thead>
-            <tr>
-              <th className="bg-blue-100 border text-center px-8 py-4">#</th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Menu Item
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Category
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Description
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Image
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Price
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4">
-                Quantity
-              </th>
-              <th className="bg-blue-100 border text-center px-8 py-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {docs
-              .sort((a, b) => a.createdAt - b.createdAt)
-              .map((data, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {idx + 1}
-                    </td>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {data.Name}
-                    </td>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {data.Category}
-                    </td>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {data.Description}
-                    </td>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {data.Description}
-                    </td>
-                    <td className="border px-8 py-4 text-center">
-                      $ {data.Price}
-                    </td>
-                    <td className="border px-8 py-4 text-center capitalize">
-                      {data.Quantity}
-                    </td>
-                    <td className="border px-2 py-4 text-center">
-                      {/* <editButtons /> */}
-                      <ul className="grid grid-cols-4 gap-2 place-items-center mx-4">
-                        <li className="col-span-2">
-                          <button onClick={() => handleUpdate(data)}>
-                            <span className="h-8 w-8">
-                              <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="stroke-current text-gray-600"
-                              >
-                                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                              </svg>
-                            </span>
-                          </button>
-                        </li>
-                        <li className="col-span-2">
-                          <button onClick={() => deleteMenuItem(data.id)}>
-                            <span className="h-8 w-8">
-                              <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="stroke-current text-red-500"
-                              >
-                                <path d="M3 3h18v18H3zM15 9l-6 6m0-6l6 6" />
-                              </svg>
-                            </span>
-                          </button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </section>
+      <Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}>
+        <UpdateMenuForm
+          progress={progress}
+          onHandleSubmit={handleSubmit}
+          onHandleUpdate={handleUpdate}
+          // onHandleFileChange={handleFileChange}
+        />
+      </Modal>
     </div>
   );
 };
 
 export default Products;
-// export default withRouter(Products);
