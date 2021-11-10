@@ -11,7 +11,6 @@ import Modal from "react-modal";
 import ListUI from "../ListUI";
 import TabsUI from "../TabsUI";
 import { useFirestore } from "../../hooks/useFirestore";
-// import { useStorage } from "../../hooks/useStorage";
 import { setMenuItem } from "../../Utils/FirebaseUtils";
 import UpdateMenuForm from "./Forms/UpdateMenuForm";
 import MenuList from "./MenuList";
@@ -38,7 +37,6 @@ const Products = () => {
     setImageUrl,
   } = useContext(ProductContext);
   const { docs } = useFirestore("menuItems");
-  // const { url } = useStorage(image);
   const [modalOpen, setModalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -121,6 +119,11 @@ const Products = () => {
     });
   };
 
+  const handleCloseModal = () => {
+    clearField();
+    setModalOpen(false);
+  };
+
   const clearField = () => {
     setName("");
     setDescription("");
@@ -147,7 +150,7 @@ const Products = () => {
       </div>
       <MenuList menuItems={docs} handleUpdate={handleUpdate} />
 
-      <Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}>
+      <Modal isOpen={modalOpen} onRequestClose={handleCloseModal}>
         <UpdateMenuForm
           progress={progress}
           onHandleSubmit={handleSubmit}

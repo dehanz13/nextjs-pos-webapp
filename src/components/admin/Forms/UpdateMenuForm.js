@@ -29,12 +29,16 @@ const UpdateMenuForm = ({
     setImageUrl,
   } = useContext(ProductContext);
 
+  const [preview, setPreview] = useState();
+
   const handleChange = (e) => {
     if (e.target.files[0]) {
       const i = e.target.files[0];
       setImage(i);
+      setPreview(URL.createObjectURL(i));
     }
   };
+  const str = JSON.stringify(image);
   return (
     <>
       <div className="flex">
@@ -86,7 +90,7 @@ const UpdateMenuForm = ({
           <div className="flex justify-center">
             <img
               className="object-contain h-48 w-48"
-              src={imageUrl || "http://via.placeholder.com/75"}
+              src={preview || image || "http://via.placeholder.com/75"}
               alt={imageUrl}
             />
           </div>
