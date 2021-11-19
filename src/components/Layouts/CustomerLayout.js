@@ -2,7 +2,7 @@ import CustomerNavbar from "../Navbars/CustomerNavbar";
 
 const CustomerLayout = ({ children }) => {
   return (
-    <div className="antialiased bg-warmGray-400">
+    <div className="antialiased bg-warmGray-200">
       <CustomerNavbar />
       <section className="relative z-50 flex justify-center">
         {children}
