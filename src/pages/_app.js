@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <React.Fragment>
+    <>
       <Head>
         <meta
           name="viewport"
@@ -26,7 +26,7 @@ const MyApp = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </UserProvider>
       </Provider>
-    </React.Fragment>
+    </>
   );
 };
 

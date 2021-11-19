@@ -4,7 +4,15 @@ import Link from "next/link";
 const SideBarItem = ({ title, path = [], shapes = [] }) => {
   return (
     <li className="flex items-center mb-3">
-      <Link href={title === "logout" ? `/api/auth/logout` : `/admin/${title}`}>
+      <Link
+        href={
+          title === "logout"
+            ? `/api/auth/logout`
+            : title === "preview"
+            ? `/customer/landing`
+            : `/admin/${title}`
+        }
+      >
         <a className="flex items-center w-full">
           <span className="h-8 w-8 flex items-center justify-center mr-3">
             <svg
@@ -102,6 +110,17 @@ export function SideBar() {
             key="maps"
             path={["M11.5 14v7"]}
             shapes={[<circle key={1} cx="11.5" cy="8.5" r="5.5" />]}
+          />
+          <SideBarItem
+            title="preview"
+            key="preview"
+            path={[]}
+            shapes={[
+              <rect x="3" y="3" width="7" height="7" />,
+              <rect x="14" y="3" width="7" height="7" />,
+              <rect x="14" y="14" width="7" height="7" />,
+              <rect x="3" y="14" width="7" height="7" />,
+            ]}
           />
         </ul>
         <hr />

@@ -18,6 +18,12 @@ module.exports = {
       "5xl": "3rem",
       "6xl": "4rem",
     },
+    aspectRatio: {
+      1: "1",
+      2: "2",
+      3: "3",
+      4: "4",
+    },
     extend: {
       colors: {
         ...colors,
@@ -119,5 +125,5 @@ module.exports = {
     "visited",
     "disabled",
   ],
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
