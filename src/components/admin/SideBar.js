@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import Link from "next/link";
-import AppContext from "../AppContext";
 
 const SideBarItem = ({ title, path = [], shapes = [] }) => {
   return (

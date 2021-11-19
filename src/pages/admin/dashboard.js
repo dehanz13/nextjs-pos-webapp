@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { Overview } from "../../components/admin/Overview";
 import Layout from "../../components/Layouts/AdminLayout";
 
-export default function DashboardPage({ Component, pageProps }) {
+export default function DashboardPage({}) {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;

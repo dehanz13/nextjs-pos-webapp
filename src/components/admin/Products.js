@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { ProductContext } from "../../context/ProductContext";
 import {
   getStorage,
@@ -45,8 +45,10 @@ const Products = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const imgUrl = await handleFileUpload(image);
     setImageUrl(imgUrl);
+
     if (imgUrl) {
       const menuDetails = {
         Name: name,
@@ -66,10 +68,10 @@ const Products = () => {
           menuDetails,
           Object.keys(updateData).length === 0 ? "newID" : updateData.id
         );
-
         clearField();
         setUpdateData({});
       } catch (error) {
+        console.log("ERROR: ");
         console.log(error);
       }
     }
@@ -85,13 +87,12 @@ const Products = () => {
     setImage(data.Image);
     setImageTitle(data.ImageTitle);
     setModalOpen(true);
-    setProgress(0);
   };
 
-  const handleFileUpload = async (image) => {
+  const handleFileUpload = async (myImage) => {
     const storage = getStorage();
-    const storageRef = ref(storage, `images/${image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image);
+    const storageRef = ref(storage, `images/${myImage.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, myImage);
     return new Promise((resolve, reject) => {
       uploadTask.on(
         "state_changed",
@@ -99,7 +100,7 @@ const Products = () => {
           const progress =
             Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress);
-          console.log("Upload is " + progress + "% done");
+          console.log("Upload is " + progress.toString() + "% done");
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused...");

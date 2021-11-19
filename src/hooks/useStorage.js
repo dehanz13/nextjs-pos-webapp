@@ -7,8 +7,8 @@ import {
 
 export const useStorage = (imageFile) => {
   const storage = getStorage();
-  const storageRef = ref(storage, `images/${image.name}`);
-  const uploadTask = uploadBytesResumable(storageRef, image);
+  const storageRef = ref(storage, `images/${imageFile.name}`);
+  const uploadTask = uploadBytesResumable(storageRef, imageFile);
   uploadTask.on(
     "state_changed",
     (snapshot) => {
@@ -26,7 +26,7 @@ export const useStorage = (imageFile) => {
       }
     },
     (error) => {
-      console.log(error);
+      console.log("Firebase Error: ", error);
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {

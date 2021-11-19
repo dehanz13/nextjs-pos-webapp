@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useContext } from "react";
 
 import { ProductContext } from "../../../context/ProductContext";
 
@@ -39,7 +38,6 @@ const UpdateMenuForm = ({
       setPreview(URL.createObjectURL(i));
     }
   };
-  const str = JSON.stringify(image);
   return (
     <>
       <div className="flex">

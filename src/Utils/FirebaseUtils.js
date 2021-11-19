@@ -12,6 +12,7 @@ export const setMenuItem = async (menuDetails, id) => {
       console.log("Updated");
     }
   } catch (err) {
+    console.log(menuDetails);
     console.log(err);
   }
 };

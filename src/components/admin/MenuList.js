@@ -50,7 +50,6 @@ const MenuList = ({ handleUpdate, menuItems, handleDeleteItem }) => {
                         src={data.Image || "http://via.placeholder.com/75"}
                         alt={data.Image}
                       />
-                      <p>{data.ImageTitle}</p>
                     </div>
                   </td>
                   <td className="border px-8 py-4 text-center">
