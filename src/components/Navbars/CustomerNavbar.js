@@ -3,8 +3,8 @@ import Image from "next/image";
 const CustomerNavbar = () => {
   return (
     <>
-      <header className="top-0 fixed z-0 w-full flex flex-wrap justify-center items-center bg-yellow-400 ">
-        <div className="flex-1 flex justify-center items-center px-5 pt-10">
+      <header className="top-0 fixed z-0 w-full flex flex-wrap items-center bg-yellow-400 px-10 pt-10">
+        <div className="flex-1 flex justify-center items-center ">
           <span className="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const CustomerNavbar = () => {
           </span>
         </div>
 
-        <div className="aspect-w-4 aspect-h-3 w-full bg-no-repeat bg-center bg-cover">
+        {/* <div className="aspect-w-4 aspect-h-3 w-full bg-no-repeat bg-center bg-cover">
           <svg
             // width="900"
             // height="600"
@@ -42,7 +42,7 @@ const CustomerNavbar = () => {
               className="fill-current text-warmGray-100"
             />
           </svg>
-        </div>
+        </div> */}
       </header>
     </>
   );
