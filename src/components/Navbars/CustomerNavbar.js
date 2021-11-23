@@ -3,7 +3,7 @@ import Image from "next/image";
 const CustomerNavbar = () => {
   return (
     <nav>
-      <header className="top-0  z-0 w-full flex flex-wrap items-center px-10 pt-10">
+      <header className="top-0 z-0 w-full flex flex-wrap items-center px-10 pt-10">
         <div className="flex-1 flex justify-center items-center ">
           <span className="h-24 w-64">
             <svg

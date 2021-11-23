@@ -1,5 +1,3 @@
-import React from "react";
-
 import CustomerLayout from "../../components/Layouts/CustomerLayout";
 import MenuOverview from "../../components/customer/MenuOverview";
 import { ProductProvider } from "../../context/ProductContext";

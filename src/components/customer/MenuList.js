@@ -1,86 +1,104 @@
-import { useState, useContext } from "react";
-import { ProductContext } from "../../context/ProductContext";
-import { useFirestore } from "../../hooks/useFirestore";
+import Image from "next/image";
+import Link from "next/link";
 
-const ChevronRight = ({ size = 20, color = "#000000" }) => (
+const ChevronRight = ({ size = 10, color = "#000000" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
+    // width={size}
+    // height={size}
+    viewBox="0 0 16 24"
     fill="none"
-    stroke={color}
+    // stroke={color}
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={`h-${size} w-${size} stroke-current text-gray-700 p-1`}
   >
     <path d="M9 18l6-6-6-6" />
   </svg>
 );
 
-const MenuList = () => {
-  const {
-    name,
-    setName,
-    description,
-    setDescription,
-    category,
-    setCategory,
-    price,
-    setPrice,
-    quantity,
-    setQuantity,
-    updateData,
-    setUpdateData,
-    image,
-    setImage,
-    imageUrl,
-    setImageUrl,
-    imageTitle,
-    setImageTitle,
-  } = useContext(ProductContext);
-  const { docs } = useFirestore("menuItems");
+const MenuItem = ({ item }) => {
   return (
-    <>
-      <div class="container w-80 mx-auto  bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 duration-500">
-        <img class="w-full" src="https://i.imgur.com/iObhoAx.png" alt="" />
-        <div class="text-center relative py-14">
-          <span class="absolute transform -translate-x-10 -translate-y-24 z-50 text-green-500 bg-white rounded-full hover:text-green-400 transition-all duration-200 cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-20 w-20"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-          <h1 class="mb-1 text-2xl font-sans font-semibold text-gray-700 hover:text-gray-900 cursor-pointer">
-            Meditaciones en casa
-          </h1>
-          <span class="text-lg text-gray-700 hover:text-gray-900">
-            Susan Paz
+    <div className="container w-80 mx-auto">
+      <div className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 duration-500">
+        <Image
+          src={item.Image}
+          alt={item.Name}
+          width={2000}
+          height={1390}
+          layout="responsive"
+          quality={100}
+          placeholder="empty"
+          objectFit="cover"
+          priority
+        />
+        <div className="text-center relative">
+          <span className="absolute w-full transform translate-x-28 -translate-y-14 bg-yellow-400 rounded-xl hover:bg-yellow-300 transition-all duration-200 cursor-pointer">
+            <ChevronRight />
           </span>
         </div>
       </div>
-      {/* <div className="max-w-md w-full lg:max-w-full lg:flex"> */}
-      {/* <Image src={pizzaPic} alt="Pizza" /> */}
-      {/* <div className="h-12 lg:h-auto lg:w-12 flex-none bg-cover rounded-3xl text-center overlow-hidden">
-              
-            </div> */}
-      {/* </div> */}
+      <div className=" py-4">
+        <div className="flex justify-between px-2">
+          <div className="flex flex-col items-start">
+            <h1 className="mb-1 text-2xl font-bold text-gray-700 hover:text-gray-900 cursor-pointer">
+              {item.Name}
+            </h1>
+            <span className="text-sm text-gray-700 hover:text-gray-900">
+              {item.Description}
+            </span>
+          </div>
+          <div className="flex flex-col justify-start">
+            <p className="text-xl font-medium">${item.Price}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-      {/* <div className="divide-y divide-gray-200">
-            <div className="py-8 space-y-4 text-gray-700 ">
-              <p className="text-base leading-6 sm:text-lg sm:leading-7">
-                Appetizer
-              </p>
-            </div>
-          </div> */}
+const MenuList = ({ menuItems }) => {
+  return (
+    <>
+      <div className="">
+        <div className="grid justify-items-center mb-10">
+          <p className="uppercase font-semibold leading-0 border-b-4 border-yellow-400 pb-2">
+            Entrees
+          </p>
+        </div>
+        <ul className="">
+          {menuItems
+            .sort((a, b) => a.createdAt - b.createdAt)
+            .map((data, idx) => {
+              return (
+                <li key={idx}>
+                  <MenuItem item={data} />
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+
+      {/* <div className="bottom-0 z-50 static w-screen flex flex-wrap justify-center items-center px-10 pt-10 bg-blue-400">
+        <div className="grid grid-cols-4 gap-3">
+          <div className="col-span-2">
+            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
+              <p className="text-md text-gray-700">All items</p>
+            </span>
+          </div>
+          <div className="col-span-1">
+            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
+              <p className="text-md text-gray-700">F</p>
+            </span>
+          </div>
+          <div className="col-span-1">
+            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
+              <p className="text-md text-gray-700">C</p>
+            </span>
+          </div>
+        </div>
+      </div> */}
     </>
   );
 };
