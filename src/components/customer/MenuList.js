@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ChevronRight = ({ size = 10, color = "#000000" }) => (
   <svg
@@ -17,6 +18,23 @@ const ChevronRight = ({ size = 10, color = "#000000" }) => (
     <path d="M9 18l6-6-6-6" />
   </svg>
 );
+
+const ActiveLink = ({ children, href, className }) => {
+  const router = useRouter();
+  return (
+    <Link href={href} scroll={false}>
+      <a
+        className={`${
+          router.pathname === href
+            ? "text-gray-900 border-gray-800"
+            : "text-gray-700 hover:text-gray-700 border-transparent"
+        } ${className} block text-base font-bold leading-6 sm:text-lg sm:leading-7 focus:outline-none focus:text-gray-900 whitespace-no-wrap`}
+      >
+        {children}
+      </a>
+    </Link>
+  );
+};
 
 const MenuItem = ({ item }) => {
   return (
@@ -79,26 +97,6 @@ const MenuList = ({ menuItems }) => {
             })}
         </ul>
       </div>
-
-      {/* <div className="bottom-0 z-50 static w-screen flex flex-wrap justify-center items-center px-10 pt-10 bg-blue-400">
-        <div className="grid grid-cols-4 gap-3">
-          <div className="col-span-2">
-            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
-              <p className="text-md text-gray-700">All items</p>
-            </span>
-          </div>
-          <div className="col-span-1">
-            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
-              <p className="text-md text-gray-700">F</p>
-            </span>
-          </div>
-          <div className="col-span-1">
-            <span className="rounded-xl px-2 py-2 bg-yellow-400 flex items-center justify-center font-bold">
-              <p className="text-md text-gray-700">C</p>
-            </span>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

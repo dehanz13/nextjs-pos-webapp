@@ -15,4 +15,6 @@ const CustomerLayout = ({ children }) => {
   );
 };
 
+export const getLayout = (page) => <CustomerLayout>{page}</CustomerLayout>;
+
 export default CustomerLayout;

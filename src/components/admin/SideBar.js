@@ -9,7 +9,7 @@ const SideBarItem = ({ title, path = [], shapes = [] }) => {
           title === "logout"
             ? `/api/auth/logout`
             : title === "preview"
-            ? `/customer/landing`
+            ? `/customer/full-menu`
             : `/admin/${title}`
         }
       >

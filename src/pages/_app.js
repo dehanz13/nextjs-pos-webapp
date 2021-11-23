@@ -11,8 +11,9 @@ import { UserProvider } from "@auth0/nextjs-auth0";
 import store from "../redux/store";
 import { Provider } from "react-redux";
 
-const MyApp = ({ Component, pageProps }) => {
-  return (
+const MyApp = ({ Component, pageProps, router }) => {
+  const getLayout = Component.getLayout || ((page) => page);
+  return getLayout(
     <>
       <Head>
         <meta
@@ -21,11 +22,9 @@ const MyApp = ({ Component, pageProps }) => {
         />
         <title>Smart POS</title>
       </Head>
-      <Provider store={store}>
-        <UserProvider>
-          <Component {...pageProps} />
-        </UserProvider>
-      </Provider>
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </>
   );
 };
