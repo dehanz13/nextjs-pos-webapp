@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const CustomerNavbar = () => {
   return (
-    <>
-      <header className="top-0 fixed z-0 w-full flex flex-wrap items-center bg-yellow-400 px-10 pt-10">
+    <nav>
+      <header className="top-0  z-0 w-full flex flex-wrap items-center px-10 pt-10">
         <div className="flex-1 flex justify-center items-center ">
-          <span className="">
+          <span className="h-24 w-64">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               // preserveAspectRatio="none"
@@ -44,7 +44,7 @@ const CustomerNavbar = () => {
           </svg>
         </div> */}
       </header>
-    </>
+    </nav>
   );
 };
 

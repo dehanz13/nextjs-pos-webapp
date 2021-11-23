@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import Modal from "react-modal";
+
 import { ProductContext } from "../../context/ProductContext";
 import {
   getStorage,
@@ -7,12 +9,10 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
-import Modal from "react-modal";
-
-import ListUI from "../ListUI";
-import TabsUI from "../TabsUI";
 import { useFirestore } from "../../hooks/useFirestore";
 import { setMenuItem, deleteMenuItem } from "../../Utils/FirebaseUtils";
+import ListUI from "../ListUI";
+import TabsUI from "../TabsUI";
 import UpdateMenuForm from "./Forms/UpdateMenuForm";
 import MenuList from "./MenuList";
 
