@@ -1,4 +1,4 @@
-import CustomerLayout from "../../components/Layouts/CustomerLayout"; // site layout
+import CustomerLayout from "../../components/customer/layouts/CustomerSiteLayout"; // site layout
 import { getLayout } from "../../components/customer/layouts/FullMenuLayout";
 
 import MenuOverview from "../../components/customer/MenuOverview";

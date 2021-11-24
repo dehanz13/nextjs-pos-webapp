@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getLayout as getSiteLayout } from "../../Layouts/CustomerLayout";
+import { getLayout as getSiteLayout } from "./CustomerSiteLayout";
 
 const ActiveLink = ({ children, href, className }) => {
   const router = useRouter();
@@ -31,14 +31,9 @@ const MenuListLayout = ({ children }) => {
               <ActiveLink href="/customer/full-menu">All Items</ActiveLink>
             </span>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-2">
             <span className="rounded-xl px-2 py-2 bg-gray-700 flex items-center justify-center font-bold">
-              <p className="text-md text-gray-100">F</p>
-            </span>
-          </div>
-          <div className="col-span-1">
-            <span className="rounded-xl px-2 py-2 bg-gray-700 flex items-center justify-center font-bold">
-              <p className="text-md text-gray-100">C</p>
+              <p className="text-md text-gray-100">Checkout</p>
             </span>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { ProductProvider } from "../../context/ProductContext";
 import { useFirestore } from "../../hooks/useFirestore";
 
-import CustomerLayout from "../../components/Layouts/CustomerLayout";
+import CustomerLayout from "../../components/customer/layouts/CustomerSiteLayout";
 import MenuListLayout from "../../components/customer/layouts/MenuListLayout";
 import { getLayout } from "../../components/customer/layouts/MenuListLayout";
 

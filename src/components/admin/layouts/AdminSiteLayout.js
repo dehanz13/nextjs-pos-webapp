@@ -1,10 +1,8 @@
-import React from "react";
+import Navbar from "../Navbar";
+import { SideBar } from "../SideBar";
+import Footer from "../../Footers/Footer";
 
-import Navbar from "../admin/Navbar";
-import { SideBar } from "../admin/SideBar";
-import Footer from "../Footers/Footer";
-
-const AdminLayout = ({ children }) => {
+const AdminSiteLayout = ({ children }) => {
   return (
     <div className="antialiased">
       <Navbar />
@@ -16,4 +14,4 @@ const AdminLayout = ({ children }) => {
   );
 };
 
-export default AdminLayout;
+export default AdminSiteLayout;

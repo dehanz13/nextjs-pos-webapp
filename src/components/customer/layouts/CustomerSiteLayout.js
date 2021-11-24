@@ -1,4 +1,4 @@
-import CustomerNavbar from "../Navbars/CustomerNavbar";
+import CustomerNavbar from "../../Navbars/CustomerNavbar";
 
 const CustomerLayout = ({ children }) => {
   return (

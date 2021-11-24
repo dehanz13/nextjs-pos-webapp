@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "next/router";
-import AdminLayout from "../../components/Layouts/AdminLayout.js";
+import AdminSiteLayout from "../../components/admin/layouts/AdminSiteLayout";
 import PieChart from "../../components/admin/Charts/PieChart";
 import BarChart from "../../components/admin/Charts/BarChart";
 import LineChart from "../../components/admin/Charts/LineChart";
@@ -9,7 +9,7 @@ import { Doughnut } from "react-chartjs-2";
 
 export default function Analytics() {
   return (
-    <AdminLayout>
+    <AdminSiteLayout>
       <main>
         <section className="mt-4 p-3">
           <ul className="mt-3 grid grid-cols-3 gap-6">
@@ -436,7 +436,7 @@ export default function Analytics() {
           </ul>
         </section>
       </main>
-    </AdminLayout>
+    </AdminSiteLayout>
   );
 }
 

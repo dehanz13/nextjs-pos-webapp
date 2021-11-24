@@ -1,15 +1,15 @@
 import React from "react";
 import { useRouter } from "next/router";
-import AdminLayout from "../../components/Layouts/AdminLayout.js";
+import AdminSiteLayout from "../../components/admin/layouts/AdminSiteLayout";
 import Products from "../../components/admin/Products";
 import { ProductProvider } from "../../context/ProductContext";
 
 export default function products() {
   return (
     <ProductProvider>
-      <AdminLayout>
+      <AdminSiteLayout>
         <Products />
-      </AdminLayout>
+      </AdminSiteLayout>
     </ProductProvider>
   );
 }

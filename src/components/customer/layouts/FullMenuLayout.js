@@ -1,4 +1,4 @@
-import { getLayout as getSiteLayout } from "../../Layouts/CustomerLayout";
+import { getLayout as getSiteLayout } from "./CustomerSiteLayout";
 
 const FullMenuLayout = ({ children }) => {
   return (

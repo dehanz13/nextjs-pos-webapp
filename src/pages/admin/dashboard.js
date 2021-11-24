@@ -4,7 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 
 import { Overview } from "../../components/admin/Overview";
-import Layout from "../../components/Layouts/AdminLayout";
+import AdminSiteLayout from "../../components/admin/layouts/AdminSiteLayout";
 
 export default function DashboardPage({}) {
   const { user, error, isLoading } = useUser();
@@ -15,14 +15,14 @@ export default function DashboardPage({}) {
     router.push("/api/auth/login");
   } else {
     return (
-      <Layout>
+      <AdminSiteLayout>
         <Overview user={user} />
         {/* <h1>test</h1> */}
         {/* <h1>USER IS</h1>
             <img src={user.picture} alt={user.name} />
             <h2>{user.name}</h2>
             <p>{user.email}</p> */}
-      </Layout>
+      </AdminSiteLayout>
     );
   }
 }
