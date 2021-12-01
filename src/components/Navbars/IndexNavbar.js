@@ -74,7 +74,7 @@ export default function IndexNavbar() {
                   className="bg-blueGray-700 text-white active:bg-blueGray-600 text-lg font-semibold uppercase px-5 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  <Link href="http://localhost:3000/api/auth/login">
+                  <Link href="/api/auth/login">
                     <a
                     // href="http://localhost:3000/api/auth/login"
                     // rel="noreferrer noopener"
