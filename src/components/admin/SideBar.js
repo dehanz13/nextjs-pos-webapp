@@ -10,6 +10,7 @@ const SideBarItem = ({ title, path = [], shapes = [] }) => {
   // };
   return (
     <li
+      key={title}
       className={`${
         router.pathname === `/admin/${title}`
           ? "text-gray-900 border-r-4 border-blue-500 bg-blue-100 rounded"
