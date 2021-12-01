@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";

@@ -19,21 +19,7 @@ const ActiveLink = ({ children, href, className }) => {
   );
 };
 
-const ArrowLeft = ({ size = 8, color = "#000000" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={`h-${size} w-${size} stroke-current text-gray-100 mr-2`}
-  >
-    <path d="M19 12H6M12 5l-7 7 7 7" />
-  </svg>
-);
-
-const ShoppingCart = ({ size = 8, color = "#000000" }) => (
+const Plus = ({ size = 8, color = "#000000" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -43,13 +29,26 @@ const ShoppingCart = ({ size = 8, color = "#000000" }) => (
     strokeLinejoin="round"
     className={`h-${size} w-${size} stroke-current text-gray-100 ml-2`}
   >
-    <circle cx="10" cy="20.5" r="1" />
-    <circle cx="18" cy="20.5" r="1" />
-    <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
+    <line x1="12" y1="5" x2="12" y2="19"></line>
+    <line x1="5" y1="12" x2="19" y2="12"></line>
   </svg>
 );
 
-const MenuListLayout = ({ children }) => {
+const Minus = ({ size = 8, color = "#000000" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`h-${size} w-${size} stroke-current text-gray-100 ml-2`}
+  >
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+  </svg>
+);
+
+const MenuItemDetailsLayout = ({ children }) => {
   return (
     <>
       {children}
@@ -57,15 +56,12 @@ const MenuListLayout = ({ children }) => {
         <div className="grid grid-cols-4 gap-3 ">
           <div className="col-span-2">
             <span className="rounded-xl px-2 py-2 bg-gray-800 flex items-center justify-center font-bold">
-              {/* <ArrowLeft /> */}
-              <ActiveLink href="/customer/full-menu">All Items</ActiveLink>
+              <p className="text-md text-gray-100">Qty</p>
             </span>
           </div>
           <div className="col-span-2">
             <span className="rounded-xl px-2 py-2 bg-gray-800 flex items-center justify-center font-bold">
-              {/* <p className="text-md text-gray-100">Checkout</p> */}
-              <ActiveLink href="/customer/full-menu">Checkout</ActiveLink>
-              {/* <ShoppingCart /> */}
+              <ActiveLink href="/customer/full-menu">Add to cart</ActiveLink>
             </span>
           </div>
         </div>
@@ -75,6 +71,6 @@ const MenuListLayout = ({ children }) => {
 };
 
 export const getLayout = (page) =>
-  getSiteLayout(<MenuListLayout>{page}</MenuListLayout>);
+  getSiteLayout(<MenuItemDetailsLayout>{page}</MenuItemDetailsLayout>);
 
-export default MenuListLayout;
+export default MenuItemDetailsLayout;

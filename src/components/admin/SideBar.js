@@ -1,9 +1,21 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const SideBarItem = ({ title, path = [], shapes = [] }) => {
+  const router = useRouter();
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   router.push(title);
+  // };
   return (
-    <li className="flex items-center mb-3">
+    <li
+      className={`${
+        router.pathname === `/admin/${title}`
+          ? "text-gray-900 border-r-4 border-blue-500 bg-blue-100 rounded"
+          : "text-gray-600 hover:text-gray-700 border-transparent"
+      } py-2`}
+    >
       <Link
         href={
           title === "logout"
@@ -12,8 +24,12 @@ const SideBarItem = ({ title, path = [], shapes = [] }) => {
             ? `/customer/full-menu`
             : `/admin/${title}`
         }
+        scroll={false}
       >
-        <a className="flex items-center w-full">
+        <a
+          className="flex items-center w-full pl-3 focus:outline-none focus:text-blue-700 whitespace-no-wrap hover:text-blue-700 font-semibold text-sm sm:text-base text-gray-800 capitalize"
+          // onCLick={handleClick}
+        >
           <span className="h-8 w-8 flex items-center justify-center mr-3">
             <svg
               width="18"
@@ -29,11 +45,10 @@ const SideBarItem = ({ title, path = [], shapes = [] }) => {
               {path.map((p, idx) => (
                 <path key={idx} d={`${p}`} />
               ))}
-
               {shapes}
             </svg>
           </span>
-          <h4 className="font-medium text-gray-800 ml-1 capitalize">{title}</h4>
+          {title}
         </a>
       </Link>
     </li>
@@ -41,13 +56,9 @@ const SideBarItem = ({ title, path = [], shapes = [] }) => {
 };
 
 export function SideBar() {
-  // const [contentDisplay, setContentDisplay] = useState("dashboard");
-  // const value = useContext(AppContext);
-  // let { componentSelected } = value.state;
-  // let { component } = value.state.components;
   return (
-    <aside className="flex flex-col px-3 bg-gray-100 border-r border-gray-200 h-full">
-      <section className="flex items-center py-3 mt-3 mb-10">
+    <aside className="flex flex-col px-0 bg-gray-100 border-r border-gray-200 h-full">
+      <section className="flex items-center py-3 mt-3 mb-10 pl-3">
         <span className="inline-block w-10 h-10 rounded-full overflow-hidden">
           <img
             className="w-full object-fit rounded-full"

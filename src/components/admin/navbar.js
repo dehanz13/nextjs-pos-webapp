@@ -1,6 +1,7 @@
-import React from "react";
+import { useRouter } from "next/router";
 
-const Navbar = () => {
+const Navbar = ({ title }) => {
+  const router = useRouter();
   return (
     <nav className="top-0 z-50 w-full flex flex-wrap items-center justify-between px-6 py-3 bg-white shadow">
       <div className="">
@@ -8,6 +9,7 @@ const Navbar = () => {
       </div>
       <header className="flex items-center px-3 h-16 ">
         <h1 className="text-2xl text-gray-800">Dashboard</h1>
+        {/* <h1 className="text-2xl text-gray-800">{router.pathname}</h1> */}
         <button className="h-12 w-12 flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

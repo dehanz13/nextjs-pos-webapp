@@ -94,6 +94,7 @@ const MenuOverview = () => {
           <div className="grid grid-cols-4 py-4 text-gray-700 ">
             <div className="col-span-3 flex justify-start items-center">
               <ActiveLink href="/customer/menu-list">Entree</ActiveLink>
+              {/* <ActiveLink href="/customer/menuItems">Entrees</ActiveLink> */}
             </div>
             <div className="col-span-1 flex justify-between items-center">
               <span className="rounded-xl h-10 w-10 min-h-10 max-h-10 max-w-8 px-2 py-2 bg-yellow-400 flex items-center justify-center font-extrabold mr-2">
