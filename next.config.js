@@ -1,7 +1,7 @@
 module.exports = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
   reactStrictMode: true,
   env: {
     PROJECT_ID: process.env.PROJECT_ID,
